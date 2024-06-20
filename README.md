@@ -1,66 +1,38 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Instructions pour la Configuration et l'Implémentation de l'Application en Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 1. Migration de la Base de Données
 
-## About Laravel
+1. Exécuter les migrations de la base de données avec la commande `php artisan migrate`.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 2. Démarrer les Services
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Démarrer le serveur Laravel avec la commande `php artisan serve`.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 2. Créer des module 
 
-## Learning Laravel
+1. Vous pouvez créer 3 types de module, les valeurs sont mesurées selon le type de module.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 3. Implémentation des Notifications en Temps Réel
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+. La commande pour générer une  données par module `php artisan schedule:run` .
+	Lancer la commande chaque fois pour générer des données, soit faite la commande suivante pour que les données se génèrent eux meme 
+	chaque une minute : `php artisan schedule:work`
 
-## Laravel Sponsors
+## 4. Détails du Projet
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### a. Génération Automatique d'État des Modules
 
-### Premium Partners
+- Un script de génération automatique d'état des modules a été mis en place. Ce script génère des données pour chaque module et les enregistre dans la base de données.
+- Les modules génèrent des données numériques sur les mesures qu'ils effectuent (température, vitesse, etc.) et stockent l'historique dans la base de données.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### b. Notifications Visuelles en Cas de Dysfonctionnement d'un Module
 
-## Contributing
+- Des notifications visuelles en temps réel sont mises en place pour signaler tout dysfonctionnement d'un module.
+- Les notifications sont gérées via un plugin comme Notify.js et Pusher pour les mises à jour en temps réel.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### c. Historique et État des Modules
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Les modules peuvent tomber en panne et refonctionner de manière aléatoire.
+- La génération de l'historique continue même lors de la navigation sur l'interface web.
+- Une page de visualisation affiche l'état de fonctionnement des modules, y compris la valeur mesurée actuelle, le nombre de données envoyées, l'état de marche, ainsi qu'un graphique pour suivre l'évolution de la valeur mesurée.
